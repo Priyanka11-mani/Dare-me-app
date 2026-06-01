@@ -1,4 +1,4 @@
-const dares = [
+const defaultDares = [
   "Dance for 10 seconds without music.",
   "Speak in a robot voice for 1 minute.",
   "Do your best celebrity impression.",
@@ -107,9 +107,69 @@ const dares = [
   "Say 'Priyanka Verma built this app' like a movie trailer voice."
 ];
 
+let currentRoom = "";
+
+function createRoom() {
+  const roomInput = document.getElementById("roomName").value.trim();
+
+  if (roomInput === "") {
+    alert("Please enter a room name.");
+    return;
+  }
+
+  currentRoom = roomInput.toLowerCase().replace(/\s+/g, "-");
+
+  if (!localStorage.getItem(currentRoom)) {
+    localStorage.setItem(currentRoom, JSON.stringify([]));
+  }
+
+  document.getElementById("roomStatus").innerText =
+    "Room active: " + currentRoom;
+
+  document.getElementById("roomName").value = "";
+  document.getElementById("dareBox").innerText =
+    "Room created. Add your own dares or click Give Me a Dare for default dares.";
+}
+
+function addCustomDare() {
+  if (currentRoom === "") {
+    alert("Please create or join a room first.");
+    return;
+  }
+
+  const customDareInput = document.getElementById("customDare");
+  const customDare = customDareInput.value.trim();
+
+  if (customDare === "") {
+    alert("Please write a dare first.");
+    return;
+  }
+
+  const roomDares = JSON.parse(localStorage.getItem(currentRoom)) || [];
+
+  roomDares.push(customDare);
+
+  localStorage.setItem(currentRoom, JSON.stringify(roomDares));
+
+  customDareInput.value = "";
+
+  document.getElementById("dareBox").innerText =
+    "Custom dare added. Click Give Me a Dare!";
+}
+
 function generateDare() {
-  const randomIndex = Math.floor(Math.random() * dares.length);
-  const selectedDare = dares[randomIndex];
+  let dareList = defaultDares;
+
+  if (currentRoom !== "") {
+    const roomDares = JSON.parse(localStorage.getItem(currentRoom)) || [];
+
+    if (roomDares.length > 0) {
+      dareList = roomDares;
+    }
+  }
+
+  const randomIndex = Math.floor(Math.random() * dareList.length);
+  const selectedDare = dareList[randomIndex];
 
   document.getElementById("dareBox").innerText = selectedDare;
 }
