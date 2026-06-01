@@ -59,4 +59,25 @@ button {
 button:hover {
   background: #ff3658;
 }
+input {
+  width: 90%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 2px solid #f1f1f1;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+}
+
+input:focus {
+  border-color: #ff5e78;
+}
+
+#roomStatus {
+  margin: 12px 0;
+  font-size: 14px;
+  color: #ff5e78;
+  font-weight: bold;
+}
 
