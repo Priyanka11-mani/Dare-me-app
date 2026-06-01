@@ -3,21 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Dare Me - Made by Priyanka Verma</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#ff5e78" />
+  <meta name="theme-color" content="#ff5e78" />
 </head>
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
-  }
-</script>
+
 <body>
 
   <div class="app">
     <h1>🎲 Dare Me!</h1>
-    <p>Click the button and get a fun random dare.</p>
+
+    <p>Create a room, add your own dares, or use our fun default dares.</p>
+
+    <input
+      type="text"
+      id="roomName"
+      placeholder="Enter room name"
+    />
+
+    <button onclick="createRoom()">Create / Join Room</button>
+
+    <div id="roomStatus">
+      No room selected
+    </div>
+
+    <input
+      type="text"
+      id="customDare"
+      placeholder="Add your personalized dare"
+    />
+
+    <button onclick="addCustomDare()">Add Custom Dare</button>
 
     <div id="dareBox">
       Your dare will appear here...
@@ -29,5 +48,12 @@
   </div>
 
   <script src="script.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+
 </body>
 </html>
