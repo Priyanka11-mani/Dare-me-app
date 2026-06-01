@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dare Me - Made by Priyanka Verma</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#ff5e78" />
+</head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+<body>
+
+  <div class="app">
+    <h1>🎲 Dare Me!</h1>
+    <p>Click the button and get a fun random dare.</p>
+
+    <div id="dareBox">
+      Your dare will appear here...
+    </div>
+
+    <button onclick="generateDare()">Give Me a Dare</button>
+
+    <p class="signature">Made by Priyanka Verma ✨</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
